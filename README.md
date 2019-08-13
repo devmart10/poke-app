@@ -1,34 +1,7 @@
-# nano-react-app-template
+# Pokemon List App
 
-The template project for [nano-react-app](https://github.com/adrianmcli/nano-react-app).
+This project uses the template project for [nano-react-app](https://github.com/adrianmcli/nano-react-app).
 
-- `npm start` — This will spawn a development server with a default port of `1234`.
-- `npm run build` — This will output a production build in the `dist` directory.
+## Deployment
 
-## Custom port
-
-You can use the `-p` flag to specify a port for development. To do this, you can either run `npm start` with an additional flag:
-
-```
-npm start -- -p 3000
-```
-
-Or edit the `start` script directly:
-
-```
-parcel index.html -p 3000
-```
-
-## Adding styles
-
-You can use CSS files with simple ES2015 `import` statements in your Javascript:
-
-```js
-import "./index.css";
-```
-
-## Babel transforms
-
-The Babel preset [babel-preset-nano-react-app](https://github.com/adrianmcli/babel-preset-nano-react-app) and a small amount of configuration is used to support the same transforms that Create React App supports.
-
-The Babel configuration lives inside `package.json` and will override an external `.babelrc` file, so if you want to use `.babelrc` remember to delete the `babel` property inside `package.json`.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e7f47318-0aa1-44a6-b233-1872924f7a55/deploy-status)](https://app.netlify.com/sites/pokemon-list/deploys)
