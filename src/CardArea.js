@@ -1,15 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 
+const Container = styled.div``;
+const Area = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 1rem auto;
+  /* grid-gap: 1rem; */
+  max-width: 55%;
+`;
+
 const StyledCard = styled.div`
-  flex: 0 0 auto;
   text-align: center;
   padding: 1rem;
-  margin: 1rem 0;
-  width: 245px;
+  /* margin: 1rem; */
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  /* box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1); */
   transition: box-shadow 0.2s ease-out;
 
   &:hover {
@@ -19,6 +25,7 @@ const StyledCard = styled.div`
 
 const Icon = styled.img`
   background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
 `;
 
 const Name = styled.h2`
@@ -63,4 +70,13 @@ const Card = props => (
   </StyledCard>
 );
 
-export default Card;
+const CardArea = props => (
+  <Area>
+    {props.data &&
+      props.data.map(e => (
+        <Card key={e.name} {...e} onRemove={props.onRemove} />
+      ))}
+  </Area>
+);
+
+export default CardArea;

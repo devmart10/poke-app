@@ -1,32 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-import Card from "./Card";
+import Navbar from "./Navbar";
+import CardArea from "./CardArea";
+import InputForm from "./InputForm";
 
-const CardArea = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 2rem;
-`;
-
-const Container = styled.div`
-  padding: 2rem;
-  margin: 0 auto;
-  max-width: 30rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-`;
-
-const Input = styled.input`
-  flex: auto;
-`;
-
-const AddButton = styled.button``;
-
-const update = creatures => {
-  return Promise.all(
+const getData = async creatures => {
+  return await Promise.all(
     creatures.map(name =>
       fetch(`https://pokeapi.co/api/v2/pokemon/${name}`).then(res => res.json())
     )
@@ -35,41 +15,25 @@ const update = creatures => {
 
 const App = () => {
   const [data, setData] = useState([]);
-  const [input, setInput] = useState("pikachu");
+  const [input, setInput] = useState("");
 
   const onAdd = () => {
     const newCreatures = input.split(",").map(e => e.trim());
-    update(newCreatures).then(data => {
+    getData(newCreatures).then(data => {
       setData(currentData => [...currentData, ...data]);
     });
     setInput("");
   };
 
   const onRemove = name => {
-    console.log("name", name);
     setData(currentData => currentData.filter(pokemon => pokemon.name != name));
   };
 
   return (
     <>
-      <Container>
-        <Input
-          type="text"
-          value={input}
-          onChange={e => setInput(e.target.value)}
-          onSubmit={onAdd}
-        />
-        <AddButton onClick={onAdd}>Add</AddButton>
-      </Container>
-      <hr />
-
-      {
-        <CardArea>
-          {data.map(e => (
-            <Card key={e.name} {...e} onRemove={onRemove} />
-          ))}
-        </CardArea>
-      }
+      <Navbar />
+      <InputForm input={input} setInput={setInput} onAdd={onAdd} />
+      <CardArea onRemove={onRemove} data={data} />
     </>
   );
 };
