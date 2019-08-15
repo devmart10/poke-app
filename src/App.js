@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
 
 import Navbar from "./Navbar";
 import CardArea from "./CardArea";
@@ -26,7 +25,9 @@ const App = () => {
   };
 
   const onRemove = name => {
-    setData(currentData => currentData.filter(pokemon => pokemon.name != name));
+    setData(currentData =>
+      currentData.filter(pokemon => pokemon.name !== name)
+    );
   };
 
   return (
